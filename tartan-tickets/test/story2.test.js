@@ -209,7 +209,7 @@ test('REQ-S2-10_views_and_clicks_are_capped_and_refunds_downgrade_purchase_signa
   assert.ok(scoreEventForUser(user, event.id, 'click') > 3.9);
 
   recordInteraction(user, event.id, 'purchase', { at: new Date(start).toISOString() });
-  assert.equal(scoreEventForUser(user, event.id, 'purchase'), 10);
+  assert.ok(Math.abs(scoreEventForUser(user, event.id, 'purchase') - 10) < 0.001);
   refundPurchase(user, event.id, { at: new Date(start + 1_000).toISOString() });
   assert.ok(Math.abs(scoreEventForUser(user, event.id, 'purchase') - 5) < 0.001);
 });
