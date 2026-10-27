@@ -72,3 +72,15 @@ test('seed_events_are_deterministic_and_no_password_or_attendee_list_is_exposed'
     assert.equal(Object.hasOwn(event, 'reporterName'), false);
   }
 });
+
+
+test('session_api_rejects_password_fields', async () => {
+  const fs = require('node:fs');
+  const route = fs.readFileSync('app/api/session/route.js', 'utf8');
+
+  assert.match(
+    route,
+    /Object\.hasOwn\(body,\s*['"]password['"]\)/,
+    'Session API must explicitly reject password fields'
+  );
+});

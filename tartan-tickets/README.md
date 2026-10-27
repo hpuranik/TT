@@ -44,7 +44,7 @@ This assessment is based on application code only; deployment, hosting, reposito
 | SEC-01 Identity and sessions | Not satisfied | `/api/session` accepts a display name and age attestation instead of authenticating through CMU SSO. |
 | SEC-01(a) ID-token validation | Not satisfied | There is no OIDC/SAML flow or ID-token validation code. |
 | SEC-01(b) Immutable subject binding | Not satisfied | Store keys use a normalized client-supplied display name rather than an identity-provider subject. |
-| SEC-01(c) No password handling | Partly satisfied | The UI has no password field and app logic does not use passwords, but API bodies are not checked for extra password fields and deployment logging was not inspected. |
+| SEC-01(c) No password handling | Partly satisfied | The UI has no password field, and the session API rejects request bodies containing a password field. Other endpoints and deployment logging have not been comprehensively verified. |
 | SEC-01(d) Keychain and token lifecycle | Not satisfied | The web app has no native iOS target, Keychain, access tokens, or refresh-token lifecycle. |
 | SEC-01(e) Recent re-authentication | Not satisfied | No sensitive-action re-authentication or five-minute session-freshness check exists. |
 | SEC-02 Authorization and data minimization | Not satisfied | Routes accept caller-supplied identifiers without an authenticated principal, role checks, or default-deny authorization. |
